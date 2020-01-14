@@ -1,0 +1,47 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+<table class="table">
+<thead>
+<tr>
+      <th scope="col">Invoice Id</th>
+      <th scope="col">Description</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Vat Amount</th>
+      <th scope="col">Amount Total</th>
+    </tr>
+    
+ </thead>
+
+
+ <tbody>
+    {% for invoice in invoices %}
+    <tr>
+    <td>{{invoice.invoiceId}}</td>
+    <td>{{invoice.description}}</td>
+    <td>{{invoice.quantity}}</td>
+    <td>{{invoice.amount}}</td>
+    <td>{{invoice.amountVat}}</td>
+    <td>{{invoice.amountTotal}}</td>
+    </tr>
+   {% endfor %}
+
+ </tbody>   
+    </table>
+    <div class="row" style="text-align:right">
+    <p >Amount  :<b> {{totals.sumamount}}</b></p></br>
+     <p >Amount Vat  : <b>{{totals.sumamountvat}}</b></p></br>
+      <p >Total Amount : <b>{{totals.sumamounttotal}}</b></p></br>
+    </div>
+<a href="{{ path('homepage') }}" class="btn btn-success" style="float:right">Back</a>
+</div>
+<div class="row">
+
+
+</div>
+
+
+{% endblock %}

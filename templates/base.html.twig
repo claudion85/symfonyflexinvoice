@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"><!--Replace this line-->
+<script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- <script language="javascript" type="text/javascript" src="jquery.flot.min.js"></script> -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    </head>
+    <body>
+      <div class="container">
+        {% block body %}{% endblock %}
+        </div>
+         <script>
+
+
+    var $newFieldsBtn = $('#button').append('<button class="btn btn-success" style="float:right">Add New Field</button>');
+    
+    $(document).ready(function(){
+       
+       
+        $collectionHolder=$('#fields');
+        $positionButton=$('#button');
+        $positionButton.append($newFieldsBtn);
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+        console.log($collectionHolder.data());
+
+       $newFieldsBtn.on('click', function(e) {
+        // add a new tag form (see next code block)
+        addFieldForm($collectionHolder, $newFieldsBtn);
+       
+    });  
+
+    $('#labelremove').on('click',function(e){
+        e.preventDefault();
+        $(this).closest('#fields')
+                    .fadeOut()
+                    .remove();
+    })
+            
+        });
+
+
+        function addFieldForm($collectionHolder, $newFieldsBtn){
+            var prototype = $collectionHolder.data('prototype');
+
+    // get the new index
+    var index = $collectionHolder.data('index');
+
+    var newForm = prototype;
+    newForm = newForm.replace(/__name__/g, index);
+    $collectionHolder.data('index', index + 1);
+    $('#fields').append('<div style="margin-top:5%" id="newfield">New Field </div> <button class="btn btn-warning" id="labelremove" onclick="removefield('+(index+1)+')">Remove</button>');
+    var $newFormLi = $('#fields').append(newForm);
+    $newLinkLi.before($newFieldsBtn);
+    
+        }
+
+
+     function removefield(value)
+     {
+         var field=$('#invoice_fields_'+(value-1));
+         $('#newfield').remove();
+         $('#labelremove').remove();
+         field.remove();
+     }   
+    
+</script>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,44 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+<table class="table">
+<thead>
+<tr>
+      <th scope="col">Id</th>
+      <th scope="col">Invoice Date</th>
+      <th scope="col">Invoice Number</th>
+      <th scope="col">Client Id</th>
+      <th scope="col">Actions</th>
+    </tr>
+    
+ </thead>
+
+
+ <tbody>
+    {% for invoice in invoices %}
+    <tr>
+    <td><a href="invoicedetail/{{invoice.id}}">{{invoice.id}}</td>
+    <td>{{invoice.invoiceDate|date('Y-m-d')}}</td>
+    <td>{{invoice.invoiceNumber}}</td>
+    <td>{{invoice.clientId}}</td>
+    <td><a href="invoicedetail/{{invoice.id}}"  class="btn btn-danger" title="Click to proceed!">
+            <i class="uk-icon-warning"></i> Show
+        </a>
+        <a href="deleteinvoice/{{invoice.id}}" type="button" class="btn btn-warning ">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+ </tbody>   
+    </table>
+<div class="row">
+
+<a href="{{ path('newinvoice') }}" class="btn btn-success" style="float:right">Add new Invoice</a>
+</div>
+
+</div>
+
+
+{% endblock %}

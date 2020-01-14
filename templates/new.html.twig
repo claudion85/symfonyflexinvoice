@@ -1,0 +1,40 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ form_start(form) }}
+<div class="row">
+<div class="col-lg-4">
+{{form_row(form.invoice_date)}}
+</div>
+<div class="col-lg-4">
+{{form_row(form.invoice_number)}}
+</div>
+<div class="col-lg-4">
+{{form_row(form.client_id)}}
+</div>
+</div>
+
+<div class="row" id="fields" style="border:1px solid black;padding:25px;margin-top:5%" data-prototype="{{ form_widget(form.fields.vars.prototype)|e('html_attr') }}" data-index="{{ form.fields|length }}">
+{{form_row(form.fields.vars.prototype.description)}}
+<div class="col-lg-3">
+{{form_row(form.fields.vars.prototype.quantity)}}
+</div>
+<div class="col-lg-3">
+{{form_row(form.fields.vars.prototype.amount)}}
+</div>
+<div class="col-lg-3">
+{{form_row(form.fields.vars.prototype.amount_vat)}}
+</div>
+<div class="col-lg-3">
+{{form_row(form.fields.vars.prototype.amount_total)}}
+</div>
+</div>
+
+<button class="btn btn-success" type="submit" style="margin-top:5%">save</button>
+<div id="button">
+</div>
+{{ form_end(form) }}
+
+
+{% endblock %}
